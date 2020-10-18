@@ -1,11 +1,15 @@
 module.exports = function check(str, bracketsConfig) {
    let chars = str.split(''),
         stack = [],
-        open = ['{', '(', '[',],
-        close = ['}', ')', ']'],
+        open = [/* '{', '(', '[', '|' */],
+        close = [/* '}', ')', ']', '|' */],
         closeIndex,
         openIndex;
+    bracketsConfig.forEach((element) => {
+      open.push(element[0]);
+      close.push(element[1]);
 
+      });
     // Проходимся по строке, проверяя каждый ее символ (п.4).
     for (let i = 0, len = chars.length; i < len; i++) {
        openIndex = open.indexOf(chars[i]);
